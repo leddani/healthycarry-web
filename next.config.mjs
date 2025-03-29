@@ -1,19 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    domains: ['placehold.co'],
+    unoptimized: process.env.NODE_ENV === 'development'
   },
   experimental: {
-    appDir: true
+    optimizeCss: true,
+    optimizePackageImports: ['@radix-ui/react-avatar', '@radix-ui/react-slot']
   }
 };
 
