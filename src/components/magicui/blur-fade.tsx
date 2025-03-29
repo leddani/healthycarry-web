@@ -1,25 +1,34 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { ReactNode } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 interface BlurFadeProps {
-  children: ReactNode;
-  delay?: number;
+  children: React.ReactNode;
   className?: string;
+  delay?: number;
 }
 
-export default function BlurFade({ children, delay = 0, className = '' }: BlurFadeProps) {
+export default function BlurFade({ children, className = '', delay = 0 }: BlurFadeProps) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0, filter: 'blur(10px)', y: 8 }}
-        animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-        transition={{ duration: 0.3, delay }}
-        className={className}
-      >
-        {children}
-      </motion.div>
+    <AnimatePresence mode="wait">
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, filter: 'blur(0px)' }}
+          exit={{ opacity: 0, filter: 'blur(10px)' }}
+          transition={{ duration: 0.5, delay }}
+          className={className}
+        >
+          {children}
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }
