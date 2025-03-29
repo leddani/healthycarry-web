@@ -2,12 +2,8 @@
 
 A modern healthcare platform built with Next.js, focusing on providing accessible medical information and resources.
 
-## Features
-- Modern UI with smooth animations
-- Responsive design
-- Medical professionals directory
-- Latest healthcare news
-- Institution partnerships
+## Live Demo
+[https://healthycarry-web.vercel.app](https://healthycarry-web.vercel.app)
 
 ## Tech Stack
 - Next.js 14
@@ -15,19 +11,40 @@ A modern healthcare platform built with Next.js, focusing on providing accessibl
 - Tailwind CSS
 - Framer Motion
 
+## Project Structure
+```
+healthycarry-web/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx      # Main page
+│   │   ├── layout.tsx    # Root layout
+│   │   └── globals.css   # Global styles
+│   └── components/
+│       └── magicui/
+│           └── blur-fade.tsx  # Animation component
+├── public/
+│   └── healthycarry-logo.svg  # Site logo
+```
+
 ## Getting Started
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run development server: `npm run dev`
+
+1. Clone the repository:
+```bash
+git clone https://github.com/leddani/healthycarry-web.git
+```
+
+2. Install dependencies:
+```bash
+cd healthycarry-web
+npm install
+```
+
+3. Run development server:
+```bash
+npm run dev
+```
+
 4. Open [http://localhost:3000](http://localhost:3000)
 
-## Project Structure
-- `/src` - Source code
-  - `/components` - React components
-  - `/app` - Next.js app router pages
-  - `/data` - Static data and configurations
-- `/public` - Static assets
-  - `/images` - Image assets
-
-## Contributing
-Contributions are welcome! Please read our contributing guidelines before submitting PRs.
+## Deployment
+The project is configured for easy deployment on Vercel. Any push to the main branch will trigger an automatic deployment.
