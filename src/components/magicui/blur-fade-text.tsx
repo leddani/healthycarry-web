@@ -1,30 +1,48 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 interface BlurFadeTextProps {
   text: string;
-  delay?: number;
   className?: string;
-  yOffset?: number;
+  delay?: number;
+  tag?: keyof JSX.IntrinsicElements;
 }
 
-export default function BlurFadeText({
-  text,
+export default function BlurFadeText({ 
+  text, 
+  className = '', 
   delay = 0,
-  className = '',
-  yOffset = 4
+  tag: Tag = 'span' 
 }: BlurFadeTextProps) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <AnimatePresence>
-      <motion.p
-        initial={{ opacity: 0, filter: 'blur(10px)', y: yOffset }}
-        animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-        transition={{ duration: 0.3, delay }}
-        className={className}
-      >
-        {text}
-      </motion.p>
+    <AnimatePresence mode="wait">
+      {isVisible && (
+        <Tag>
+          {text.split('').map((char, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0, filter: 'blur(10px)' }}
+              animate={{ opacity: 1, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, filter: 'blur(10px)' }}
+              transition={{ 
+                duration: 0.5, 
+                delay: delay + (index * 0.03) 
+              }}
+              className={className}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </Tag>
+      )}
     </AnimatePresence>
   );
 }
