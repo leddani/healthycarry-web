@@ -37,8 +37,8 @@ export default function Home() {
                 </svg>
               </div>
               <div className="p-4">
-                <h3 className="font-medium">AI Discovers New Antibiotics</h3>
-                <p className="text-gray-600 mt-2">Machine learning revolutionizes drug discovery</p>
+                <h3 className="font-medium">AI in Healthcare</h3>
+                <p className="text-gray-600 mt-2">Machine learning revolutionizes medicine</p>
               </div>
             </div>
           </div>
